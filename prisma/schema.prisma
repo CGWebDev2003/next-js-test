@@ -1,0 +1,17 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite" // Du kannst hier auch andere Datenbanken wie PostgreSQL oder MySQL verwenden
+  url      = "file:./dev.db" // Der Pfad zur SQLite-Datenbank
+}
+
+generator client {
+  provider = "prisma-client-js" // Erzeugt den Prisma Client für die Interaktion mit der DB
+}
+
+model Task {
+  id        Int      @id @default(autoincrement()) // Eindeutige ID, die automatisch inkrementiert wird
+  title     String   // Der Titel der Aufgabe
+  completed Boolean  @default(false) // Boolean-Wert, der angibt, ob die Aufgabe abgeschlossen ist
+  createdAt DateTime @default(now()) // Zeitpunkt, zu dem die Aufgabe erstellt wurde
+}
